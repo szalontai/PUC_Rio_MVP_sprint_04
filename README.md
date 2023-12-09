@@ -28,6 +28,7 @@ Proposta do projeto :
    Nos treinos, o melhor algorítmo foi KNeighbors, seguido do LogisticRegression. Com acurácia de KNN = 61,52% e LogisticRegression = 59,57%. Acabei gerando um modelo para os dois, pois vou utilizá-los para fazer o teste automatizado com o PyTest com ambos.
    
 ## 3. Produza um notebook no Google Colab
+
    Na produção do notebook eu criei dois, um sem o conceito de programação orientada a objetos POO e outra com o conceito, com os seguintes nomes:
 
    MVP_sprint_04.ipynb
@@ -37,12 +38,19 @@ Proposta do projeto :
    Como era de se esperar os dois apresentam os mesmos resultados. No final faço a geração dos arquivos do modelo e do scaler para os dois algorítmos para o teste automatizado com o PyTest.
 
 ## 4. Desenvolva uma aplicação full stack (contemplando back-end e front-end) simples, utilizando as tecnologias estudadas na sprint Desenvolvimento Full Stack Básico.
-   No GitHub coloquei na pasta aplicação o back-end e front-end, nas pastas api e front, respectivamente os fontes
+
+   No GitHub coloquei os fontes na pasta aplicação/api e aplicação/front o back-end e front-end, respectivamente.
+   Para a aplicação foi usando o mesmo modelo passado nas aulas de Orientação do MVP. No back-end, foi usada uma base de dados SQLite que guarda as medidas e nomes dos usuários. No front-end o usuário informa a altura, peso e idade e a aplicação retorna a medida do seu tamanho.
 
 ## 5. Implemente um teste automatizado utilizando PyTest para assegurar que o modelo atenda aos requisitos de desempenho estabelecidos (por você).
+   
+   Na implementação do teste automatizado foram criados dois testes. Um para o algorítmo LR e outro para o KNN. Como na avalição do dataset o algorítmo KNN foi o melhor, os requisitos de desempenho estabelecidos foram os dele. Desta forma podemos avaliar se o teste passa para um e não para o outro.
 
 ## 6. Reflita sobre como as boas práticas vistas na disciplina Desenvolvimento de Software Seguro (por exemplo, técnicas de anonimização de dados) poderiam ser aplicadas ao seu problema.
-   No meu caso, como o me
+
+   Cono o dataset escolhido não possui dados sensíveis, não houve a necessidade da aplicação das técnicas de anonimização de dados. Caso houvesse, seria necessária a aplicação, pois poderia trazer vários prejuízos para quem tivesse seus dados mostrados no dataset. Por exemplo se o nome, endereço e CPF estivessem na relação, esses dados poderiam ser usados para emitir documentos falsos.  
 
 ## 7. Video
+
+   No mesmo diretório no GitHub foi colocado o arquivo MVP_4.mp4 com o vídeo de apresentação do trabalho
 
