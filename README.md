@@ -37,9 +37,12 @@ Proposta do projeto :
    Como era de se esperar os dois apresentam os mesmos resultados. No final faço a geração dos arquivos do modelo e do scaler para os dois algorítmos para o teste automatizado com o PyTest.
 
 ## 4. Desenvolva uma aplicação full stack (contemplando back-end e front-end) simples, utilizando as tecnologias estudadas na sprint Desenvolvimento Full Stack Básico.
-   No gith coloquei na pasta aplicação o back-end e front-end, nas pastas api e front, respectivamente os fontes
+   No GitHub coloquei na pasta aplicação o back-end e front-end, nas pastas api e front, respectivamente os fontes
+
 ## 5. Implemente um teste automatizado utilizando PyTest para assegurar que o modelo atenda aos requisitos de desempenho estabelecidos (por você).
+
 ## 6. Reflita sobre como as boas práticas vistas na disciplina Desenvolvimento de Software Seguro (por exemplo, técnicas de anonimização de dados) poderiam ser aplicadas ao seu problema.
    No meu caso, como o me
+
 ## 7. Video
 
