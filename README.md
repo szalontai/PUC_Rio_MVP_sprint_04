@@ -46,6 +46,8 @@ Proposta do projeto :
    
    Na implementação do teste automatizado foram criados dois testes. Um para o algorítmo LR e outro para o KNN. Como na avalição do dataset o algorítmo KNN foi o melhor, os requisitos de desempenho estabelecidos foram os dele. Desta forma podemos avaliar se o teste passa para um e não para o outro.
 
+   O arquivo de teste é o test_modelos.py
+
 ## 6. Reflita sobre como as boas práticas vistas na disciplina Desenvolvimento de Software Seguro (por exemplo, técnicas de anonimização de dados) poderiam ser aplicadas ao seu problema.
 
    Cono o dataset escolhido não possui dados sensíveis, não houve a necessidade da aplicação das técnicas de anonimização de dados. Caso houvesse, seria necessária a aplicação, pois poderia trazer vários prejuízos para quem tivesse seus dados mostrados no dataset. Por exemplo se o nome, endereço e CPF estivessem na relação, esses dados poderiam ser usados para emitir documentos falsos.  
