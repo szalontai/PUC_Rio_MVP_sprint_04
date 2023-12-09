@@ -4,7 +4,6 @@ from model.modelo import Model
 
 # Instanciação das Classes
 carregador = Carregador()
-modelo = Model()
 avaliador = Avaliador()
 
 # Parâmetros    
@@ -30,7 +29,7 @@ def test_modelo_lr():
     modelo_lr = Model.carrega_modelo(lr_path)
 
     # Carregando scaler
-    scaler_path = 'ml_model/scaler.pkl'
+    scaler_path = 'ml_model/scaler_lr.pkl'
     scaler = Model.carrega_modelo(scaler_path)
     
     # Obtendo as métricas da Regressão Logística
@@ -49,7 +48,6 @@ def test_modelo_lr():
     print("f1_lr:", f1_lr)
     
     # Testando as métricas da Regressão Logística 
-    # Modifique as métricas de acordo com seus requisitos
     assert acuracia_lr >= 0.53
     assert recall_lr >= 0.53
     assert precisao_lr >= 0.52
@@ -57,18 +55,19 @@ def test_modelo_lr():
  
 # Método para testar o modelo KNN a partir do arquivo correspondente
 def test_modelo_knn():
+
     # Importando modelo de KNN
     knn_path = 'ml_model/grade_knn.pkl'
     modelo_knn = Model.carrega_modelo(knn_path)
 
     # Carregando scaler
-    scaler_path = 'ml_model/scaler.pkl'
+    scaler_path = 'ml_model/scaler_knn.pkl'
     scaler = Model.carrega_modelo(scaler_path)
     
     # Obtendo as métricas do KNN
     acuracia_knn,recall_knn, precisao_knn, f1_knn = avaliador.avaliar(modelo_knn,scaler, X, Y)
     
-    #Mostraando o valor da acuracia_lr
+    #Mostraando o valor da acuracia_knn
     print("acuracia_knn:", acuracia_knn)
  
     #Mostraando o valor da recall_knn
@@ -81,7 +80,6 @@ def test_modelo_knn():
     print("f1_knn:", f1_knn)
     
     # Testando as métricas da KNN
-    # Modifique as métricas de acordo com seus requisitos
     assert acuracia_knn >= 0.53
     assert recall_knn >= 0.53
     assert precisao_knn >= 0.52

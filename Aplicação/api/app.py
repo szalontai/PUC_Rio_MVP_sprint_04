@@ -2,7 +2,6 @@ from flask_openapi3 import OpenAPI, Info, Tag
 from flask import redirect
 from urllib.parse import unquote
 
-# from sqlalchemy.exc import IntegrityError
 
 from model import Session, Model, Cliente
 from logger import logger
@@ -10,10 +9,10 @@ from schemas import *
 from flask_cors import CORS
 
 # Instanciação das Classes
-modelo = Model()
+# modelo = Model()
 
 # Instanciando o objeto OpenAPI
-info = Info(title="Minha API", version="1.0.0")
+info = Info(title="AI Grid System", version="1.0.0")
 app = OpenAPI(__name__, info=info)
 CORS(app)
 
@@ -56,7 +55,7 @@ def get_clientes():
         logger.warning("Não há clientes cadastrados na base :/")
         return {"message": "Não há clientes cadastrados na base :/"}, 404
     else:
-        logger.debug(f"%d clientes econtrados" % len(clientes))
+        logger.debug(f"%d clientes encontrados" % len(clientes))
         return apresenta_clientes(clientes), 200
 
 
@@ -82,7 +81,7 @@ def predict_cliente(form: ClienteSchema):
     modelo = Model.carrega_modelo(modelo_path)
     
     # Carregando scaler
-    scaler_path = 'ml_model/scaler.pkl'
+    scaler_path = 'ml_model/scaler_knn.pkl'
     scaler = Model.carrega_modelo(scaler_path)
     
 
@@ -117,7 +116,7 @@ def predict_cliente(form: ClienteSchema):
     # Caso ocorra algum erro na adição
     except Exception as e:
         error_msg = "Não foi possível salvar novo item :/"
-        logger.warning(f"Erro ao adicionar cliente '{cliente.name}', {error_msg}")
+        logger.warning(f"Erro ao adicionar o cliente '{cliente.name}', {error_msg}")
         return {"message": error_msg}, 400
     
 
@@ -136,7 +135,7 @@ def get_cliente(query: ClienteBuscaSchema):
     """
     
     cliente_nome = query.name
-    logger.debug(f"Coletando dados sobre produto #{cliente_nome}")
+    logger.debug(f"Coletando dados sobre o cliente #{cliente_nome}")
     # criando conexão com a base
     session = Session()
     # fazendo a busca
@@ -145,10 +144,10 @@ def get_cliente(query: ClienteBuscaSchema):
     if not cliente:
         # se o cliente não foi encontrado
         error_msg = f"Cliente {cliente_nome} não encontrado na base :/"
-        logger.warning(f"Erro ao buscar produto '{cliente_nome}', {error_msg}")
+        logger.warning(f"Erro ao buscar o cliente '{cliente_nome}', {error_msg}")
         return {"mesage": error_msg}, 404
     else:
-        logger.debug(f"Cliente econtrado: '{cliente.name}'")
+        logger.debug(f"Cliente encontrado: '{cliente.name}'")
         # retorna a representação do cliente
         return apresenta_cliente(cliente), 200
    
@@ -166,7 +165,7 @@ def delete_cliente(query: ClienteBuscaSchema):
     """
         
     cliente_nome = unquote(query.name)
-    logger.debug(f"Deletando dados sobre cliente #{cliente_nome}")
+    logger.debug(f"Deletando dados sobre o cliente #{cliente_nome}")
     
     # Criando conexão com a base
     session = Session()
@@ -176,12 +175,12 @@ def delete_cliente(query: ClienteBuscaSchema):
     
     if not cliente:
         error_msg = "Cliente não encontrado na base :/"
-        logger.warning(f"Erro ao deletar cliente '{cliente_nome}', {error_msg}")
+        logger.warning(f"Erro ao deletar o cliente '{cliente_nome}', {error_msg}")
         return {"message": error_msg}, 404
     else:
         session.delete(cliente)
         session.commit()
-        logger.debug(f"Deletado cliente #{cliente_nome}")
+        logger.debug(f"Deletado o cliente #{cliente_nome}")
         return {"message": f"Cliente {cliente_nome} removido com sucesso!"}, 200
     
 # Rota de testes
@@ -205,7 +204,7 @@ def predict_teste(form: ClienteSchema):
     modelo = Model.carrega_modelo(modelo_path)
     
     # Carregando modelo
-    scaler_path = 'ml_model/scaler.pkl'
+    scaler_path = 'ml_model/scaler_knn.pkl'
     scaler = Model.carrega_modelo(scaler_path)
     
 
@@ -216,18 +215,16 @@ def predict_teste(form: ClienteSchema):
         age=form.age,
         outcome=Model.preditor_cliente(modelo, scaler, form)
     )
-    logger.debug(f"Adicionando cliente de nome: '{cliente.name}'")
-    logger.debug(f"Adicionando cliente de tamanho: '{cliente.outcome}'")
     
     try:
         # Criando conexão com a base
      
-        logger.debug(f"Adicionado cliente de nome: '{cliente.name}'")
+        logger.debug(f"Listagem do cliente de nome: '{cliente.name}'")
         return apresenta_cliente(cliente), 200
     
-    # Caso ocorra algum erro na adição
+    # Caso ocorra algum erro na busca
     except Exception as e:
-        error_msg = "Não foi possível salvar novo item :/"
-        logger.warning(f"Erro ao adicionar cliente '{cliente.name}', {error_msg}")
+        error_msg = "Não foi possível fazer a predição :/"
+        logger.warning(f"Erro ao fazer a predição do cliente '{cliente.name}', {error_msg}")
         return {"message": error_msg}, 400
    
