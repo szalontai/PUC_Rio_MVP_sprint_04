@@ -54,5 +54,5 @@ Proposta do projeto :
 
 ## 7. Video
 
-   No mesmo diretório no GitHub foi colocado o arquivo MVP_4.mp4 com o vídeo de apresentação do trabalho
+   No mesmo diretório no GitHub foi colocado o arquivo MVP_04.mp4 com o vídeo de apresentação do trabalho
 
